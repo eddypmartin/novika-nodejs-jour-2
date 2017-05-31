@@ -1,0 +1,10 @@
+<ul class="adresse">
+ <% for(var i=0; i<adresse.length; i++) {%>
+ <li class="client">
+ <span><%= adresse[i].nom %></span>
+ <span><%= adresse[i].telephone %></span>
+ <span> - <%= adresse[i]._id %></span>
+ <a href=http://localhost:8081/detruire/<%= adresse[i]._id %> >Détruire </a> "
+ </li>
+ <% } %>
+ </ul>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8">
+ <title>Mon Application</title>
+</head>
+<body>
+ Node.js, Express et MongoDB.
+ <button id='update'>Mise à jour téléphone</button>
+ <form action="/adresse" method="POST">
+ <input type="text" placeholder="nom" name="nom">
+ <input type="text" placeholder="Telephone" name="telephone">
+ <button type="submit">Submit</button>
+ </form>
+
+<ul class="adresse">
+ <% for(var i=0; i<adresse.length; i++) {%>
+ <li class="client">
+ <span><%= adresse[i].nom %></span>
+ <span><%= adresse[i].telephone %></span>
+ </li>
+ <% } %>
+ </ul>
+</body>
+</html>

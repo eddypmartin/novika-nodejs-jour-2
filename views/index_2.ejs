@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8">
+ <link rel="stylesheet" type="text/css" href="/css/style.css">
+ <title>Mon Application</title>
+</head>
+<body>
+  <div class='global'>
+   Node.js, Express et MongoDB.
+   <button id='update'>Mise à jour téléphone</button>
+   <form id='formulaire' action="/adresse" method="POST">
+   <input type="text" placeholder="nom" name="nom">
+   <input type="text" placeholder="prenom" name="prenom">   
+   <input type="text" placeholder="Telephone" name="telephone">
+   <input type="text" placeholder="id" name="_ID">
+   <input type="submit">Submit</input>
+   </form>
+  <% ordre=(ordre=="asc"?"desc":"asc") %>
+
+  <table class="adresse">
+  <tr>
+    <th><a href='http://localhost:8081/nom/<%= ("nom" == cle?ordre:"desc") %>'>Nom</a></th>
+    <th><a href='http://localhost:8081/prenom/<%= ("prenom" == cle?ordre:"desc") %>'>Prenom</th>
+    <th><a href='http://localhost:8081/telephone/<%= ("telephone" == cle?ordre:"desc") %>'>Telephone</th>
+    <th><a href='http://localhost:8081/_id/<%= ("_id" == cle?ordre:"desc") %>'>_ID</th>
+    <th>Détruire</th>
+    <th>Sauver</th>
+  </tr>
+   <% for(var i=0; i<adresse.length; i++) {%>
+   <tr class="client">
+   <td contenteditable="true"><%= adresse[i].nom %></td>
+   <td contenteditable="true"><%= adresse[i].prenom %></td>
+   <td contenteditable="true"><%= adresse[i].telephone %></td>
+   <td><%= adresse[i]._id %></td>
+   <td>
+   <a href=http://localhost:8081/detruire/<%= adresse[i]._id %> >Détruire </a>
+   </td>
+    <td>
+      <a href=http://localhost:8081/sauvegarder/<%= adresse[i]._id %>/lafleur/bob/5141234567>sauvegarder </a>
+    </td>
+    <td>
+      <button>transfert</button>
+    </td>
+
+   </tr>
+   <% } %>
+   </table>
+ </div>
+ <script type="text/javascript">
+   elmBouton = document.getElementsByTagName('button')
+   var elmLigne
+   var elmForm = document.getElementById('formulaire')
+   var elmFormNom = elmForm.querySelector('input:nth-child(1)')
+   var elmFormPrenom = elmForm.querySelector('input:nth-child(2)')
+   var elmFormTelephone = elmForm.querySelector('input:nth-child(3)')
+   var elmFormId = elmForm.querySelector('input:nth-child(4)')
+   for (elm of elmBouton)
+   {
+     elm.addEventListener('click', function(){
+       elmLigne = this.parentNode.parentNode
+       console.log(this.parentNode.parentNode.tagName)
+       console.log(elmLigne.querySelector('td:nth-child(1)').innerHTML)
+       sNom = elmLigne.querySelector('td:nth-child(1)').innerHTML
+       sPrenom = elmLigne.querySelector('td:nth-child(2)').innerHTML
+       sTelephone = elmLigne.querySelector('td:nth-child(3)').innerHTML
+       s_ID = elmLigne.querySelector('td:nth-child(4)').innerHTML
+       elmFormNom.value = sNom
+       elmFormPrenom.value = sPrenom
+       elmFormTelephone.value = sTelephone
+       elmFormId.value = s_ID
+       elmForm.submit()
+
+     })
+   }
+
+ </script>
+</body>
+</html>
